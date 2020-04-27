@@ -19,7 +19,7 @@ var PORT = 8080;
 // Sets up the Express app to handle data parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(app.use(express.static("public"))); // Public folder is used to hold the static data (data that does not change)
+app.use(express.static("public")); // Public folder is used to hold the static data (data that does not change)
 
 // ================================================================================
 // ROUTER
@@ -27,8 +27,8 @@ app.use(app.use(express.static("public"))); // Public folder is used to hold the
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
-// require("./routes/apiRoutes")(app);
-// require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // =============================================================================
 // LISTENER
