@@ -1,8 +1,7 @@
-# Jotter
 
 ## <img src="https://avatars1.githubusercontent.com/u/58960456?v=4" alt="avatar" style="border-radius: 50px" width="75" />  aaivey22
 
-# <h1 align="center"> READ-O-MATIC </h1>
+# <h1 align="center"> JOTTER </h1>
 <h3 align="center"> An application that can be used to write, save, update, and delete notes using backend express to save/retrieve note data from a JSON file. </h3>
 
 ---
