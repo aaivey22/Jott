@@ -22,12 +22,12 @@
 ---
 
 ## Snapshot
-<img src="read_screenshot1.png" alt="Jotter" style="border-radius: 20px" />
+<img src="./assets/jotter-img.png" alt="Jotter" style="border-radius: 20px" />
 
 <br/>
 <br/>
 
-<img src="read-gif.gif" alt="Jotter" style="border-radius: 20px" />
+<img src="./assets/note-taker-gif.gif" alt="Jotter" style="border-radius: 20px" />
 
 <br/>
 <br/>

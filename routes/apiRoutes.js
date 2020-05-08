@@ -11,9 +11,9 @@ module.exports = function (app) {
             else if (data) {
                 console.log("get().10", JSON.parse(data))
                 res.json(JSON.parse(data))
-            }
-        })
-    })
+            };
+        });
+    });
 
     // API POST request uses the route to save new user entries by pushing them into the postEntries arr.
     app.post("/api/notes", (req, res) => {
@@ -30,11 +30,11 @@ module.exports = function (app) {
 
             fs.writeFile("db/db.json", JSON.stringify(postEntries), (err) => {
                 if (err) throw err
-            })
+            });
             console.log("req.body.31", req.body)
             res.json(newEntry);
 
-        })
+        });
 
     });
 
@@ -47,12 +47,12 @@ module.exports = function (app) {
             let deleteEntries = JSON.parse(data)
             let deletedEntry = deleteEntries.find(entry => entry.id === id)
             let indexEntry = deleteEntries.indexOf(deletedEntry)
-            deleteEntries.splice(indexEntry, 1)
+            deleteEntries.splice(indexEntry, 1);
 
             fs.writeFile("db/db.json", JSON.stringify(deleteEntries), (err) => {
                 if (err) throw err
-                res.json({ ok: true })
-            })
-        })
+                res.json({ ok: true });
+            });
+        });
     });
-}
+};
