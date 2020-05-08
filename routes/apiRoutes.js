@@ -41,24 +41,27 @@ module.exports = function (app) {
 // broken
     app.delete("/api/notes/:id", (req, res) => {
         let id = req.params.id;
-        let deletedEntry = postEntries.find(entry => entry.id === id)
-        let indexEntry = postEntries.indexOf(deletedEntry) //gets the array index value of note with correct id
-        postEntries.splice(indexEntry, 1)
+        // let deletedEntry = postEntries.find(entry => entry.id === id)
+        // let indexEntry = postEntries.indexOf(deletedEntry) //gets the array index value of note with correct id
+        // postEntries.splice(indexEntry, 1)
 
-        fs.writeFile("db/db.json", JSON.stringify(postEntries), (err) => {
-            if (err) throw err
-        })
 
         fs.readFile("db/db.json", "utf8", (err, data) => {
-            const result = postEntries.filter(id => id === id[i]);
-            console.log(result);
-            let deleteEntries = data
+            // const result = postEntries.filter(id => id === id);
+            // console.log(result);
+            let deleteEntries = JSON.parse(data)
             let deletedEntry = deleteEntries.find(entry => entry.id === id)
             let indexEntry = deleteEntries.indexOf(deletedEntry)
             deleteEntries.splice(indexEntry, 1)
             console.log(deleteEntries);
             console.log(indexEntry);
             console.log(deletedEntry);
+
+            fs.writeFile("db/db.json", JSON.stringify(deleteEntries), (err) => {
+                if (err) throw err
+                res.json({ok: true})
+            })
+    
         })
 
 });
