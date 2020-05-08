@@ -1,10 +1,10 @@
 const fs = require("fs"); // Require is a method
-let postEntries = [];
 
 // Linking api routes to a series of "data" sources that hold arrays of information on the new/old note entries.
 // API GET request uses the route to retrieve array of note data to display.
 module.exports = function (app) {
     app.get("/api/notes", (req, res) => {
+        let postEntries = [];
 
         fs.readFile("db/db.json", "utf8", (err, data) => { // The readFile is anonymous and contains three values.
             if (err) throw err
@@ -38,31 +38,21 @@ module.exports = function (app) {
 
     });
 
-// broken
+    // API DELETE request uses the route to FIND the selected note entry by ID and remove it from the array with SPLICE.
+    // The remaining entries whose ID do not match the "chosen" ID remain in the deleteEntries array and written back to the browser.
     app.delete("/api/notes/:id", (req, res) => {
         let id = req.params.id;
-        // let deletedEntry = postEntries.find(entry => entry.id === id)
-        // let indexEntry = postEntries.indexOf(deletedEntry) //gets the array index value of note with correct id
-        // postEntries.splice(indexEntry, 1)
-
 
         fs.readFile("db/db.json", "utf8", (err, data) => {
-            // const result = postEntries.filter(id => id === id);
-            // console.log(result);
             let deleteEntries = JSON.parse(data)
             let deletedEntry = deleteEntries.find(entry => entry.id === id)
             let indexEntry = deleteEntries.indexOf(deletedEntry)
             deleteEntries.splice(indexEntry, 1)
-            console.log(deleteEntries);
-            console.log(indexEntry);
-            console.log(deletedEntry);
 
             fs.writeFile("db/db.json", JSON.stringify(deleteEntries), (err) => {
                 if (err) throw err
-                res.json({ok: true})
+                res.json({ ok: true })
             })
-    
         })
-
-});
+    });
 }
